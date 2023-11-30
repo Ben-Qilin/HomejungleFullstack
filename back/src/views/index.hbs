@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    fieldset {
+      border: none;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    input {
+      width: 60%;
+    }
+  </style>
+</head>
+
+<body style="background-repeat: no-repeat; background-image: url('../public/jungle2.svg');background-color: rgba(85, 168, 33, 0.8); padding: 3rem;">
+  <header style="color: white; text-align: center;">
+    <h1>DashBoard - Admin</h1>
+  </header>
+  <main
+    style="min-height: 80vh; background-color: rgba(255, 255, 255, 0.291); padding:  1rem; border-radius: 1rem; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; display: flex; flex-direction: column; align-items:center;">
+    <h2
+      style="border: 1px solid grey; padding:0.5rem 1rem; background-color: white; border-radius: 1rem; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+      Ajout d'un produit:</h2>
+    <form action="/admin/add-plant" method="post"
+      style="display: flex; flex-direction: column; gap: 3rem; background-color: rgba(255, 255, 255, 0.517); border: 1px solid grey; padding: 1rem; border-radius: 1rem; width: 60%; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+      <legend>Formulaire d'ajout:</legend>
+      <div>
+        <fieldset>
+          <label>Nom de la plante:</label>
+          <input type="text" name="name_plant" required>
+        </fieldset>
+        <fieldset>
+          <label>Type de la plante:</label>
+          <input type="text" name="type" required>
+        </fieldset>
+        <fieldset>
+          <label>Hydratation de la plante:</label>
+          <input type="text" name="water" required>
+        </fieldset>
+        <fieldset>
+          <label>Ensoleillement de la plante:</label>
+          <input type="text" name="sun" required>
+        </fieldset>
+        <fieldset>
+          <label>Prix de la plante:</label>
+          <input type="text" name="price" required>
+        </fieldset>
+        <fieldset>
+          <label>Image de la plante:</label>
+          <input type="text" name="img" required>
+        </fieldset>
+      </div>
+      <button type="submit">Ajouter</button>
+    </form>
+    <section style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+      <h2
+        style="border: 1px solid grey; padding:0.5rem 1rem; background-color: white; border-radius: 1rem; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+        Liste des plantes:</h2>
+      <ul style="flex-wrap: wrap;  display: flex; gap: 1rem; justify-content: center;">
+        {{#each plants}}
+        <li
+          style="position: relative; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; box-sizing: border-box; background-color: white; padding: 0.2rem; list-style: none; border: 1px solid grey; border-radius: 1rem; display: flex; flex-direction: column; height: 12rem; width: 12rem;">
+          <div style="height: 80%;">
+            <img style="border-radius: 0.7rem; width: 100%; height: 100%; object-fit: cover; object-position: center; aspect-ratio: 1;" src={{img}}>
+          </div>
+          <div style="height: 20%; display: flex; justify-content: space-between;">
+            <h3 style="margin: 0;">{{name_plant}}</h3>
+            <button onclick="window.location.href='admin/edit-plant/{{plantId}}'"
+              style="border-radius: 0 0 1rem 0; border: 1px solid rgba(128, 128, 128, 0.264); box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">✏️</button>
+          </div>
+          <form style="position: absolute; right: -0.5rem; top: -0.5rem;" action="/admin/delete-plant/{{plantId}}" method="post" onsubmit="setTimeout(function () { window.location.reload(); }, 10)">
+            <button style="background-color: red; color: white; border-radius: 1rem; width: 2rem; height: 2rem; border: 1px solid rgb(92, 1, 1)" type="submit">X</button>
+          </form>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+  </main>
+  <footer></footer>
+</body>
+
+</html>

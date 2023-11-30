@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    fieldset{
+    display: flex;
+  border: 1px solid gray;
+  padding: 1rem 2rem;
+    width: 70%;
+    justify-content: space-between;
+    border-radius: 1rem;
+    }
+    input {
+        
+    }
+    </style>
+</head>
+
+<body style="height: 100vh; box-sizing: border-box; background-image: url('../public/jungle2.svg');background-color: rgba(85, 168, 33, 0.8); padding: 3rem;">
+    <header style="color: rgb(0, 0, 0); text-align: center;">
+        <h1>DashBoard - Admin</h1>
+    </header>
+    <main style=" box-sizing: border-box;background-color: rgba(255, 255, 255, 0.291); padding:  1rem; border-radius: 1rem; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; ">
+        <h2>Modifier les informations du produit</h2>
+        <section style="box-sizing: border-box; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+          height: 80vh; padding: 1rem; display: flex; border-radius: 1rem; justify-content: space-evenly; ">
+            <div
+                style="perspective: 1000px;;border-radius: 1rem; display: flex; width: 45%; align-items:center; height: 100%; ">
+                <img style="border: 1px solid rgba(128, 128, 128, 0.523); box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;transform: rotateY(20deg);width: 25rem; height:80%; border-radius: 1rem;"
+                    src={{img}}>
+                <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;background-color: rgba(255, 255, 255, 0.8); border: 1px solid gray; padding: 1rem; height:70%; border-radius: 1rem; width: 50%">
+                    <h3>Nom: {{name_plant}}</h3>
+                    <p>Type: {{type}}</p>
+                    <p>Hydratation: {{water}}</p>
+                    <p>Ensoleillement: {{sun}}</p>
+                    <p>Prix: {{price}}€</p>
+                    
+                </div>
+            </div>
+            <div style="width: 45%; ">
+                <form onsubmit="setTimeout(function () { window.location.reload(); }, 10)" action="/admin/edit-plant/{{plantId}}" style="display: flex; flex-direction: column; align-items: center; box-sizing: border-box; padding: 1rem; gap: 2rem; " method="post" >
+                    <fieldset>
+                        <label for="name_plant">Nom de la plante :</label>
+                    <input type="text" id="name_plant" name="name_plant" value="{{name_plant}}">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="water">Hydratation :</label>
+                    <input type="text" id="water" name="water" value="{{water}}">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="sun">Ensoleillement :</label>
+                    <input type="text" id="sun" name="sun" value="{{water}}">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="price">Prix :</label>
+                    <input type="text" id="price" name="price" value="{{price}}">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="type">Type :</label>
+                    <input type="text" id="type" name="type" value="{{type}}">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="img">Lien de l'image :</label>
+                    <input type="text" id="img" name="img" value="{{img}}">
+                    </fieldset>
+                    
+                    <!-- Répétez ce processus pour chaque champ que vous souhaitez modifier -->
+                    <input type="submit" value="Mettre à jour">
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+</html>
